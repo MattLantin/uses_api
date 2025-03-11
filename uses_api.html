@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Random Dog Image</title>
+    
     <style>
+        /* Basic styling for the page */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
         }
+
+        /* Styling for the displayed image */
         img {
             max-width: 100%;
             height: auto;
@@ -17,6 +21,8 @@
             border-radius: 10px;
             margin-top: 20px;
         }
+
+        /* Styling for the button */
         button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -27,28 +33,41 @@
             border: none;
             border-radius: 5px;
         }
+
+        /* Change button color when hovered */
         button:hover {
             background-color: #0056b3;
         }
     </style>
+
     <script>
+        /**
+         * Function to fetch a random dog image from the Dog CEO API
+         */
         function fetchDogImage() {
-            fetch('https://dog.ceo/api/breeds/image/random')
-                .then(response => response.json())
+            fetch('https://dog.ceo/api/breeds/image/random') // Make a GET request to the API
+                .then(response => response.json()) // Convert response to JSON format
                 .then(data => {
+                    // Set the image source to the retrieved URL
                     document.getElementById('dogImage').src = data.message;
                     document.getElementById('dogImage').alt = "Random Dog Image";
                 })
-                .catch(error => console.error('Error fetching dog image:', error));
+                .catch(error => console.error('Error fetching dog image:', error)); // Handle any errors
         }
 
-        window.onload = fetchDogImage;  // Automatically fetch an image when the page loads
+        // Automatically fetch an image when the page loads
+        window.onload = fetchDogImage;  
     </script>
 </head>
 <body>
     <h1>Random Dog Image</h1>
+    
+    <!-- Image container, initially empty -->
     <img id="dogImage" src="" alt="Fetching dog image...">
+    
     <br>
+    
+    <!-- Button to fetch a new random dog image -->
     <button onclick="fetchDogImage()">Get Another Image</button>
 </body>
 </html>
